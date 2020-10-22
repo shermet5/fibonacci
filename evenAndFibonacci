@@ -1,0 +1,29 @@
+package JavaHomeFibonachi;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Main {
+    public static void main(String[] args){
+        int[] arr = {1,2 ,3 ,4,5, 6, 10 ,20 ,22};
+        evenNumbers(arr);
+        int[] fibArr = {1 , 1};
+        getFibonacciNum();
+    }
+    private static int[] evenNumbers(int[] num){
+        Arrays.stream(num)
+                     .filter(n -> n % 2 == 0)
+                     .forEach(System.out::println);
+        return num;
+    }
+    private  static void getFibonacciNum(){
+        String collect = Stream.iterate(new int[]{1, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(10)
+                .map(t -> t[0])
+                .map(String::valueOf) // convert to string
+                .collect(Collectors.joining(", "));
+
+        System.out.println("Result : " + collect);
+    }
+}
